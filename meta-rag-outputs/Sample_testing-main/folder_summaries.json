@@ -1,0 +1,40 @@
+[
+  {
+    "type": "folder",
+    "summary": "folder name:Folder02:\n\nFrom a debugging perspective, this folder appears to handle core business logic for several e\u2011commerce subsystems \u2014 refunds, analytics, shipping, and inventory \u2014 with many small \u201chelper\u201d functions for numeric calculations. **Feature/Functionality:** It processes and validates domain\u2011specific operations like refund eligibility, conversion rate computation, shipping ETA, and stock reservation. **User Flow/System Behavior:** Customer returns, order analytics dashboards, shipping estimates, and inventory checks all depend on this logic. If any function here fails or miscalculates, downstream UI and API responses will be wrong. **Inputs:** It takes user\u2011supplied values (email addresses, refund amounts, postal codes), transactional data (orders, sessions, product totals), and operational parameters (distance, speed, stock\n\nfolder name :Folder02\n\nlevels). **Outputs:** It produces booleans for validations, numeric metrics (conversion rates, ETAs, stock counts), and mapped values (shipping zones). **State Managed:** It indirectly manages inventory counts, refund limits, and analytics aggregates. **External Dependencies:** Likely interacts with payment APIs for refunds, analytics databases, and shipping zone maps. **Possible Failures:** Division by zero, negative inventory, off\u2011by\u2011one date errors, invalid lookups, overly permissive validation. **User\u2011Visible Bugs:** Wrong refund approvals, incorrect top\u2011product lists, misestimated delivery dates, stock showing as available when it\u2019s not. **System Area:** This folder spans multiple areas \u2014 payment/refund validation, analytics reporting, shipping calculation, and inventory management \u2014 making it a high\u2011risk point for runtime logic errors.\n\nfolder name:Folder02",
+    "repo_path": "Folder02",
+    "children_files": [
+      "Folder02/sample08.py",
+      "Folder02/sample10.py",
+      "Folder02/sample09.py",
+      "Folder02/sample07.py",
+      "Folder02/sample06.py"
+    ],
+    "children_folders": []
+  },
+  {
+    "type": "folder",
+    "summary": "folder name:Folder01:\n\nFrom a debugging perspective, this folder appears to handle **core e\u2011commerce domain logic** for catalog, checkout, and related helper functions. It supports user flows like browsing products by category, applying discounts, calculating totals, and validating tokens or payment details. Inputs include product data (category strings, prices), user\u2011entered search terms, discount percentages, payment card numbers, currency rates, login failure counts, and reset token timestamps. Outputs are filtered product lists, adjusted prices, masked card numbers, converted currency amounts, computed taxes, and final order totals. It manages transient application state such as current cart contents, subtotal, shipping, tax, loyalty points, and coupon usage. It may interact with external payment gateways (via masked card numbers) and\n\nfolder name :Folder01\n\npossibly a product database or API for catalog data. Potential runtime failures include type errors when inputs aren\u2019t numeric, division by zero in currency conversion, incorrect time unit comparisons in token validation, and incomplete helper functions causing crashes. Logic errors already noted include case\u2011sensitive category filtering, truncating cents in discounts, off\u2011by\u2011one in login lockouts, double\u2011counting shipping in tax, and coupon stacking. User\u2011visible bugs could be wrong product search results, incorrect prices/totals, expired tokens being accepted/rejected incorrectly, or exposing too much card info. This folder belongs mainly to **checkout and catalog business logic**, with overlaps into authentication and payment safety. Debugging here should focus on input validation, arithmetic correctness, and enforcing business rules.\n\nfolder name:Folder01",
+    "repo_path": "Folder01",
+    "children_files": [
+      "Folder01/sample02.py",
+      "Folder01/Sample01.py",
+      "Folder01/sample05.py",
+      "Folder01/sample04.py",
+      "Folder01/sample03.py"
+    ],
+    "children_folders": []
+  },
+  {
+    "type": "folder",
+    "summary": "folder name:Sample_testing-main:\n\nFrom the provided file summary, this folder appears to handle **sample testing functionality** \u2014 essentially, it\u2019s a helper or guidance module that interacts with users to clarify what kind of \u201csample testing\u201d they want to perform. The user flow depends on this folder when someone initiates a testing-related action without specifying the exact context. It processes **user input** in the form of text queries or commands, and its output is a clarification prompt or guidance message that helps the user choose the correct testing path. The folder manages a small piece of application state: the \u201ctesting context\u201d or \u201ctype of testing\u201d the user intends.\n\nfolder name :Sample_testing-main\n\nIt doesn\u2019t seem to directly call external APIs or databases, but it may feed into other modules that perform actual tests once the context is known. Possible runtime failures include misinterpreting user intent, producing irrelevant clarification prompts, or failing to handle unexpected input formats. Logic errors could occur if the mapping between user input and testing categories is incomplete. User-visible bugs might include confusing or repetitive prompts, incorrect assumptions about the testing type, or failure to proceed to the correct testing workflow. This folder belongs to the **user interaction / input validation** area, specifically for guiding users into the correct testing process before execution.\n\nfolder name:Sample_testing-main",
+    "repo_path": ".",
+    "children_files": [
+      "README.md"
+    ],
+    "children_folders": [
+      "Folder02",
+      "Folder01"
+    ]
+  }
+]
