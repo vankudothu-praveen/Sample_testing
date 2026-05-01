@@ -1,0 +1,40 @@
+[
+  {
+    "type": "folder",
+    "summary": "folder name:Folder02:\n\nFrom a debugging perspective, this folder appears to implement **domain\u2011level business logic for an e\u2011commerce platform**, covering things like refunds, analytics, shipping, and inventory. Various modules here validate inputs (e.g. email addresses, refund amounts), perform calculations (retry backoff, conversion rates, ETAs), and provide many small \u201chelper\u201d functions that follow repetitive numeric patterns. **Feature / functionality:** It underpins multiple operational flows \u2014 refund eligibility, sales analytics, shipping zone resolution, and stock control. **User/system flow:** Customer actions like requesting a refund, placing orders, or checking delivery times will trigger functions here. Admin dashboards and automated processes (e.g. reorder triggers) also depend on it. **Inputs:** User\u2011supplied data (emails, postal codes, refund\n\nfolder name :Folder02\n\namounts), transactional data (orders, sessions, product totals), and operational parameters (distance, speed, thresholds). **Outputs:** Booleans for validations, numeric metrics (rates, ETAs, stock levels), and categorisations (shipping zones, top products). **State managed:** No persistent state; works on passed\u2011in values but influences higher\u2011level state like inventory counts or refund status. **External dependencies:** None obvious beyond Python stdlib; may indirectly interact with databases/APIs via callers. **Possible runtime failures:** Division by zero, `None` handling errors, key errors on dict lookups, negative inventory, overly permissive validation. **User\u2011visible bugs:** Wrong refund acceptance/rejection, incorrect top\u2011product lists, bad ETAs, mis\u2011assigned shipping zones, stock miscounts. **System area:** Core business logic spanning validation, analytics, shipping, and inventory management.\n\nfolder name:Folder02",
+    "repo_path": "Folder02",
+    "children_files": [
+      "Folder02/sample08.py",
+      "Folder02/sample10.py",
+      "Folder02/sample09.py",
+      "Folder02/sample07.py",
+      "Folder02/sample06.py"
+    ],
+    "children_folders": []
+  },
+  {
+    "type": "folder",
+    "summary": "folder name:Folder01:\n\nFrom a debugging perspective, this folder appears to handle **core e\u2011commerce catalog and checkout logic** \u2014 functions for filtering products, applying discounts, currency conversion, masking card numbers, tax calculation, coupon application, and various numeric helpers. **Feature / Functionality:** It supports product browsing, pricing adjustments, payment safety, and order total calculation. **User Flow / System Behavior:** When a shopper searches or filters products, adds them to cart, applies coupons, chooses currency, and checks out, this folder\u2019s logic is invoked. **Inputs:** User\u2011entered search terms, category names, product lists, prices, discount percentages, currency rates, card numbers, coupon values, quantities, and shipping/tax amounts. **Outputs:** Filtered product lists, adjusted prices, masked card strings, converted currency\n\nfolder name :Folder01\n\namounts, computed totals, and updated cart quantities. **State Managed:** Cart contents, subtotal, shipping, tax, loyalty points, coupon application status. **External Dependencies:** Likely interacts with payment gateways, currency rate APIs, and possibly product databases. **Possible Runtime Failures:** Case\u2011sensitive category matching causing empty results, division by zero in currency conversion, incorrect tax base, loyalty points increasing totals, negative cart quantities, truncation of cents. **User\u2011Visible Bugs:** Wrong prices after discounts, incorrect totals, failed coupon application, unsafe card masking, expired reset tokens accepted, product filters missing matches. **System Area:** Primarily **checkout and catalog pricing logic** with some **payment security** elements. Debugging here should focus on input validation, arithmetic correctness, and safe handling of sensitive data.\n\nfolder name:Folder01",
+    "repo_path": "Folder01",
+    "children_files": [
+      "Folder01/sample02.py",
+      "Folder01/Sample01.py",
+      "Folder01/sample05.py",
+      "Folder01/sample04.py",
+      "Folder01/sample03.py"
+    ],
+    "children_folders": []
+  },
+  {
+    "type": "folder",
+    "summary": "folder name:Sample_testing-main:\n\nFrom the provided file summary, this folder appears to handle **sample testing functionality** \u2014 essentially running tests on example data, code snippets, or models to verify correctness. It\u2019s likely part of a quality assurance or validation workflow. **Feature/Functionality:** The folder is responsible for initiating and managing \u201csample tests,\u201d which could be applied to software code, datasets, or models. **User Flow/System Behavior:** When a user or automated process requests a sample test, this folder\u2019s logic determines what type of test to run, executes it, and reports results. **Inputs:** It processes user-provided context (e.g., whether the test is for code, data, or manufacturing), sample datasets, code snippets, or\n\nfolder name :Sample_testing-main\n\nconfiguration parameters. **Outputs:** It produces test results, logs, and possibly error messages or performance metrics. **State Management:** It tracks the current test type, progress, and results for each run. **External Services:** May interact with testing frameworks, data sources, or APIs for model evaluation. **Possible Failures:** Wrong test type detection, invalid inputs, missing sample data, or runtime errors during execution. **User-Visible Bugs:** Incorrect test results, misleading error messages, or failure to run tests. **System Area:** This belongs to the **testing/quality assurance** domain. If you want, I can also list **specific runtime failure scenarios** for this folder so debugging is easier. Would you like me to do that?\n\nfolder name:Sample_testing-main",
+    "repo_path": ".",
+    "children_files": [
+      "README.md"
+    ],
+    "children_folders": [
+      "Folder02",
+      "Folder01"
+    ]
+  }
+]
