@@ -1,17 +1,43 @@
 [
   {
     "type": "folder",
-    "summary": "folder name:Sample_testing-main:\n\nFrom a debugging perspective, this folder appears to handle the **core e\u2011commerce transaction lifecycle** \u2014 from product catalog and pricing to checkout, payment, shipping, refunds, and inventory updates. **Feature responsibility:** It manages how items are displayed, priced (including discounts and currency conversion), how payments are processed securely, and how post\u2011purchase actions like refunds and shipping are handled. **User flow dependency:** Any customer purchase or refund request depends on this logic \u2014 browsing products, adding to cart, checking out, paying, receiving goods, and possibly returning them. **Inputs:** User selections (products, quantities), payment details, discount codes, currency preferences, shipping addresses, refund requests, and analytics events. **Outputs:** Order confirmations, payment transaction results,\n\nfolder name :Sample_testing-main\n\nshipping updates, refund approvals/denials, inventory adjustments, and analytics data. **State management:** Current cart contents, pricing rules, payment status, shipping status, inventory levels, refund eligibility. **External services:** Payment gateways, currency conversion APIs, shipping carriers, analytics platforms, possibly a product database. **Possible runtime failures:** Payment API errors, incorrect currency conversion, discount miscalculations, refund logic errors, inventory mismatches, shipping API failures. **User-visible bugs:** Wrong prices, failed payments, incorrect refund amounts, delayed shipping updates, out\u2011of\u2011stock items still purchasable. **System area:** Primarily **transaction management** \u2014 combining checkout/payment with order fulfillment and post\u2011purchase handling. --- Do you want me to map **exactly where refund logic and checkout logic might conflict** so we can pinpoint high\u2011risk bugs?\n\nfolder name:Sample_testing-main",
+    "summary": "folder name:Sample_testing-main:\n\nGot it \u2014 here\u2019s a debugging\u2011focused summary of the `Sample_testing-main` folder based on what you\u2019ve described. --- This folder handles the **core transactional flows** of an e\u2011commerce system: taking orders (catalog, checkout, pricing, discounts, currency conversion, payment safety) and processing post\u2011purchase actions (refunds, shipping, inventory updates, analytics). The user flow starts when a customer selects products, proceeds through checkout and payment, and may later request a refund. Both flows depend on shared order, payment, and inventory data. **Inputs** include user\u2011entered order details, payment credentials, discount codes, currency settings, shipping info, and refund requests (amount, reason, email). It also processes API responses from payment gateways, shipping providers, and possibly analytics services. **Outputs** are updated order statuses, payment confirmations or reversals, inventory adjustments,\n\nfolder name :Sample_testing-main\n\nshipping cancellations, and analytics events. The folder manages state for orders, stock levels, payment records, and return eligibility windows. External dependencies likely include payment APIs, shipping carriers, and a database for orders/inventory. Possible runtime failures: incorrect refund amount validation, return window miscalculations, weak email validation, mismatched currency rates, race conditions in stock updates, and retry logic that fails under network issues. User\u2011visible bugs could be wrong refund totals, denied valid returns, duplicate inventory changes, incorrect revenue reporting, or failed payment retries. This folder belongs to the **transaction management** area \u2014 spanning checkout, payment, and refund subsystems. --- Do you want me to now **map refund and checkout functions to specific files** so we can pinpoint exactly where these bugs might originate?\n\nfolder name:Sample_testing-main",
     "repo_path": "meta-rag-outputs/Sample_testing-main",
     "children_files": [
-      "meta-rag-outputs/Sample_testing-main/folder_summaries.json",
-      "meta-rag-outputs/Sample_testing-main/file_summaries.json"
+      "meta-rag-outputs/Sample_testing-main/file_summaries.json",
+      "meta-rag-outputs/Sample_testing-main/folder_summaries.json"
     ],
     "children_folders": []
   },
   {
     "type": "folder",
-    "summary": "folder name:meta-rag-outputs:\n\nIt looks like you haven\u2019t provided the actual file summaries yet \u2014 without them, I can\u2019t give you a debugging-focused description of the folder\u2019s runtime behavior. If you share the file summaries, I can analyze them and produce a ~200\u2011word explanation covering: - What the\n\nfolder name :meta-rag-outputs\n\nfolder does - How it fits into the user flow - Inputs/outputs - State management - External dependencies - Potential runtime failures and user-visible bugs - Which system area it belongs to Could you paste the file summaries so I can generate the requested debugging-focused summary?\n\nfolder name:meta-rag-outputs",
+    "summary": "folder name:Folder01:\n\nFrom a debugging perspective, this folder appears to handle **core e\u2011commerce checkout and payment logic**, including cart operations, coupon application, currency conversion, tax calculation, and sensitive data masking (like card numbers). The user flow depending on this folder is the **purchase/checkout process** \u2014 from adding/removing items, applying discounts, calculating totals, to finalizing payment. It processes inputs such as **item quantities**, **coupon values**, **currency rates**, **tax rates**, **loyalty points**, and **payment card numbers**. Some functions also handle **login failure counts** and **reset tokens**, indicating overlap with account security during checkout. Outputs include **updated cart states**, **discounted subtotals**, **converted currency amounts**, **final totals**, and **masked card strings**.\n\nfolder name :Folder01\n\nThe folder manages transient application state like **current cart contents**, **failure counters**, and **token validity windows**. It may interact with external payment gateways (via masked card numbers) and possibly currency rate APIs. Potential runtime failures include division by zero in currency conversion, negative quantities from remove_item, incorrect tax due to double\u2011counting shipping, and token expiry miscalculations. User\u2011visible bugs could be wrong totals, over\u2011exposed card digits, coupons stacking when policy forbids, or accounts locking too late. This folder belongs mainly to the **checkout/payment subsystem**, with some **authentication/session security** overlap. Debugging here should focus on numeric logic correctness, input validation, and ensuring sensitive data is properly masked.\n\nfolder name:Folder01",
+    "repo_path": "Folder01",
+    "children_files": [
+      "Folder01/sample05.py",
+      "Folder01/Sample01.py",
+      "Folder01/sample03.py",
+      "Folder01/sample04.py",
+      "Folder01/sample02.py"
+    ],
+    "children_folders": []
+  },
+  {
+    "type": "folder",
+    "summary": "folder name:Folder02:\n\nFrom a debugging perspective, this folder appears to implement **core business logic for shipping, refunds, analytics, and inventory** in an e\u2011commerce system. It underpins several user flows: calculating delivery ETAs and zones, validating and processing refunds, computing analytics like conversion rates and top products, and managing stock reservations and reorder triggers. It processes inputs such as distances, speeds, postal codes, refund amounts, delivery dates, order/session counts, product sales totals, available/requested stock, and sometimes raw strings (e.g. money values). Its outputs are typically numeric results (ETA days, backoff times, totals), booleans (valid refund, within return window, needs reorder), or mapped values (shipping zones, top\n\nfolder name :Folder02\n\nproduct lists). It manages transient state like calculated metrics, derived inventory levels, and decision flags, but not long\u2011lived persistence. It doesn\u2019t directly hit a database, but it may be called by higher layers that do; it uses no obvious external APIs beyond Python stdlib. Potential runtime failures include division by zero, negative inventory, key errors on unmapped postal codes, and overly permissive/incorrect boundary checks. User\u2011visible bugs could manifest as wrong delivery estimates, refunds exceeding captured amounts, incorrect top\u2011seller lists, or allowing overselling. This folder belongs to the **domain/business logic layer** spanning shipping, returns, analytics, and inventory management, and is critical for correct transactional behavior.\n\nfolder name:Folder02",
+    "repo_path": "Folder02",
+    "children_files": [
+      "Folder02/sample07.py",
+      "Folder02/sample10.py",
+      "Folder02/sample08.py",
+      "Folder02/sample09.py",
+      "Folder02/sample06.py"
+    ],
+    "children_folders": []
+  },
+  {
+    "type": "folder",
+    "summary": "folder name:meta-rag-outputs:\n\nIt looks like you haven\u2019t provided the actual file summaries yet \u2014 I\u2019ll need those in order to generate the debugging-focused description you\u2019re asking for. If you paste the file summaries here, I can then: - Identify the folder\u2019s purpose and role in the system. - Explain\n\nfolder name :meta-rag-outputs\n\nwhat inputs/outputs it handles. - Describe the state it manages and external dependencies. - Highlight possible runtime failures and user-visible bugs. - Place it in the correct system area (e.g., authentication, payments, etc.). Could you share the file summaries so I can create the ~200-word runtime-focused analysis?\n\nfolder name:meta-rag-outputs",
     "repo_path": "meta-rag-outputs",
     "children_files": [],
     "children_folders": [
@@ -20,41 +46,15 @@
   },
   {
     "type": "folder",
-    "summary": "folder name:Folder02:\n\nFrom a debugging perspective, this folder appears to implement **core business logic for an e\u2011commerce domain**, specifically around **validation, calculation, and small utility helpers** that other modules (refunds, shipping, analytics, inventory) depend on. **Functionality & User Flow:** It supports flows like processing refunds, calculating shipping ETAs, computing analytics metrics, and managing stock. These functions are called deep inside service logic \u2014 for example, when a user requests a refund, the refund amount and return window are validated here before proceeding. **Inputs:** It processes numeric values (amounts, counts, distances), strings (emails, postal codes), and sometimes domain objects or dicts. Inputs may come from user forms, API calls, or internal service calls. **Outputs:** It\n\nfolder name :Folder02\n\nreturns booleans for validations, computed numbers (fees, ETAs, rates), transformed strings, or raises domain\u2011specific errors. **State Managed:** No persistent state \u2014 it works on passed\u2011in values, but enforces business rules that affect higher\u2011level state (e.g., inventory counts). **External Dependencies:** Minimal \u2014 mostly Python stdlib; may indirectly interact with databases or APIs via callers. **Possible Failures:** Division by zero, negative inventory, off\u2011by\u2011one date logic, case\u2011sensitive lookups, overly permissive validation. **User\u2011Visible Bugs:** Incorrect refund acceptance/rejection, wrong ETA shown, top products list inverted, stock going negative. **System Area:** This is **business rules & validation utilities** \u2014 a shared logic layer used by multiple domains (authentication is not the focus; it\u2019s more about transactions, shipping, analytics, inventory).\n\nfolder name:Folder02",
-    "repo_path": "Folder02",
-    "children_files": [
-      "Folder02/sample08.py",
-      "Folder02/sample10.py",
-      "Folder02/sample09.py",
-      "Folder02/sample07.py",
-      "Folder02/sample06.py"
-    ],
-    "children_folders": []
-  },
-  {
-    "type": "folder",
-    "summary": "folder name:Folder01:\n\nFrom a debugging perspective, this folder appears to handle **core e\u2011commerce business logic** for catalog, checkout, and payment flows. It processes user\u2011supplied inputs like product category filters, prices, quantities, coupon codes, card numbers, and currency rates, as well as internal values like tax rates, shipping costs, and loyalty points. The outputs are computed totals, masked card numbers, filtered product lists, and converted currency amounts, which feed directly into the UI and order processing pipeline. It manages transient application state such as cart contents, applied discounts, and calculated taxes. Some functions interact with external payment gateways or currency conversion APIs, and may depend on database\u2011stored product/category data. Potential\n\nfolder name :Folder01\n\nruntime failures include type errors when non\u2011numeric values are passed to arithmetic helpers, division by zero in currency conversion, incorrect string handling in category filters, and incomplete function definitions causing syntax errors. Logic bugs could inflate totals (double\u2011adding shipping), expose too many card digits, allow negative quantities, or misapply multiple coupons. User\u2011visible issues might be wrong prices, failed checkout, incorrect tax, or mismatched category search results. This folder belongs to the **checkout and pricing domain** of the system, bridging catalog filtering, cart management, and payment preparation. Debugging here should focus on validating inputs, enforcing business rules, and ensuring safe numeric and string operations to prevent subtle calculation errors.\n\nfolder name:Folder01",
-    "repo_path": "Folder01",
-    "children_files": [
-      "Folder01/sample02.py",
-      "Folder01/Sample01.py",
-      "Folder01/sample05.py",
-      "Folder01/sample04.py",
-      "Folder01/sample03.py"
-    ],
-    "children_folders": []
-  },
-  {
-    "type": "folder",
-    "summary": "folder name:Sample_testing-main:\n\nIt looks like the provided file summary is more of a conversational prompt than an actual code description, but from a debugging perspective, this folder appears to be related to **sample testing functionality** \u2014 likely a helper or instructional module for clarifying testing concepts. **Feature/Functionality:** This folder seems to handle user queries about \u201csample testing,\u201d possibly guiding them toward the correct testing method or workflow. **User Flow/System Behavior:** When a user asks about testing, the system responds with clarifying questions to determine the type of testing they mean. This helps route them to the correct process or example. **Inputs:** The main input is user text (questions or requests) about testing. **Outputs:** The\n\nfolder name :Sample_testing-main\n\noutput is a clarification prompt or explanation, possibly leading to further examples or test case generation. **State Managed:** It may track the context of the conversation, such as what testing type the user is interested in. **External Services:** Likely none, unless integrated with a knowledge base or testing framework. **Possible Failures:** Misinterpretation of user intent, leading to wrong guidance. **User-Visible Bugs:** Confusing or irrelevant clarifications, failure to recognize testing type. **System Area:** This belongs to **user guidance / testing support** in a documentation or help system. If you want, I can also simulate what a *real* debugging summary would look like for an actual code folder. Would you like me to do that?\n\nfolder name:Sample_testing-main",
+    "summary": "folder name:Sample_testing-main:\n\nIt looks like the \u201cfile summaries\u201d you provided aren\u2019t actually summaries of code files \u2014 they\u2019re just a conversational snippet asking for clarification about \u201cSample_testing.\u201d Since there\u2019s no real code description, I\u2019ll infer what this folder might be about from the name and the text. From a debugging perspective, a folder called **Sample_testing** is likely responsible for running example or prototype tests against parts of the system. This could be used to validate that certain features work as expected before deployment. The user flow depending on this folder would be the developer or QA process \u2014 running tests to confirm functionality. Inputs might\n\nfolder name :Sample_testing-main\n\ninclude sample datasets, mock API responses, or hardcoded parameters. Outputs would be test results, logs, or pass/fail reports. It may manage temporary state like mock objects, in-memory data, or test configurations. External dependencies could include testing frameworks, CI/CD pipelines, or APIs being mocked. Possible runtime failures here include incorrect test assumptions, outdated sample data, or mismatches between mocks and real APIs. User-visible bugs from faulty tests could mean broken features slipping into production because tests didn\u2019t catch them. This folder belongs to the **testing/quality assurance** area of the system. Debugging here focuses on ensuring tests are accurate, relevant, and aligned with real-world usage.\n\nfolder name:Sample_testing-main",
     "repo_path": ".",
     "children_files": [
       "README.md"
     ],
     "children_folders": [
-      "meta-rag-outputs",
+      "Folder01",
       "Folder02",
-      "Folder01"
+      "meta-rag-outputs"
     ]
   }
 ]
